@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ARI</string>
+    <string name="title_activity_home_toolbar">HomeToolbarActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_search">Search</string>
+    <string name="title_basket">Basket</string>
+    <string name="title_add">Create Project</string>
+    <string name="title_account">Account</string>
+</resources>
