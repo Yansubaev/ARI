@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="@dimen/card_project_width"
+    android:layout_height="@dimen/card_project_height"
+    android:id="@+id/card_solution"
+    app:cardElevation="@dimen/card_project_elevation"
+    app:cardCornerRadius="@dimen/card_project_corner_radius" >
+
+    <ImageView
+        android:id="@+id/card_project_icon"
+        android:layout_width="@dimen/card_project_icon_width"
+        android:layout_height="@dimen/card_project_icon_height"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/card_project_icon_margin_top"
+        android:layout_marginEnd="@dimen/card_project_icon_margin_end"
+        android:contentDescription="@string/project_icon"
+        app:srcCompat="@drawable/ic_plus_dark" />
+
+    <TextView
+        android:id="@+id/title_project"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/card_project_title"
+        android:textAppearance="@style/card_project_title" />
+
+</androidx.cardview.widget.CardView>
