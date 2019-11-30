@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="@dimen/create_project_project_icon_item_width"
+    android:layout_height="@dimen/create_project_project_icon_item_height"
+    app:cardElevation="0dp">
+
+    <ImageView
+        android:id="@+id/creating_project_icon"
+        android:layout_width="@dimen/create_project_project_icon_width"
+        android:layout_height="@dimen/create_project_project_icon_height"
+        android:layout_gravity="center"
+        android:contentDescription="@string/project_icon"
+        android:src="@drawable/ic_office" />
+
+    <ImageView
+        android:id="@+id/chosen_icon_check_mark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/ic_green_check_mark"
+        android:contentDescription="@string/chosen_item" />
+
+</androidx.cardview.widget.CardView>

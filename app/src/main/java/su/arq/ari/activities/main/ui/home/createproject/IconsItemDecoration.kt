@@ -1,25 +1,16 @@
-package su.arq.ari.activities.main.ui.home.projects
+package su.arq.ari.activities.main.ui.home.createproject
 
 import android.content.Context
 import android.graphics.Rect
-import android.util.TypedValue
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import kotlin.math.roundToInt
+import su.arq.ari.R
 
-
-class ItemDecoration(
-    private var context: Context,
-    private var paddingInDp: Float
-) : RecyclerView.ItemDecoration() {
-    private val padding: Int
-    private val dist: Int
-
-    init {
-        var metrics = context.resources.displayMetrics
-        padding = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, paddingInDp, metrics).roundToInt()
-        dist = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 22f, metrics).roundToInt()
-    }
+class IconsItemDecoration(
+    context: Context
+) : RecyclerView.ItemDecoration(){
+    private val padding: Int = context.resources.getDimensionPixelSize(R.dimen.fragment_create_project_icons_margin)
+    private val dist: Int = context.resources.getDimensionPixelSize(R.dimen.fragment_create_project_icons_dist)
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -40,7 +31,9 @@ class ItemDecoration(
         if((adapter!=null) && (itemPosition == adapter.itemCount - 1)){
             outRect.right = padding
         }
-        outRect.top = padding
-        outRect.bottom = padding
+        //outRect.top = padding
+        //outRect.bottom = padding
     }
+
+
 }

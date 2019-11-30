@@ -10,4 +10,12 @@
     <dimen name="card_project_icon_height">80dp</dimen>
     <dimen name="card_project_icon_margin_top">-20dp</dimen>
     <dimen name="card_project_icon_margin_end">-20dp</dimen>
+    <dimen name="card_projects_item_margin">16dp</dimen>
+    <dimen name="card_projects_item_distance">22dp</dimen>
+    <dimen name="fragment_create_project_icons_margin">16dp</dimen>
+    <dimen name="fragment_create_project_icons_dist">10dp</dimen>
+    <dimen name="create_project_project_icon_item_width">56dp</dimen>
+    <dimen name="create_project_project_icon_item_height">56dp</dimen>
+    <dimen name="create_project_project_icon_width">44dp</dimen>
+    <dimen name="create_project_project_icon_height">44dp</dimen>
 </resources>

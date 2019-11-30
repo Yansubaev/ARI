@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="project_icon">Иконка проекта</string>
+    <string name="chosen_item">Выбранный пункт</string>
 </resources>

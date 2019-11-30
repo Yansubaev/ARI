@@ -9,4 +9,7 @@
     <string name="frame_title_ready_solutions">Готовые решения</string>
     <string name="title_frame_projects">Проекты</string>
     <string name="card_project_title">Создать новый</string>
+    <string name="create_project_name_hint">Введите название проекта</string>
+    <string name="choose_projects_icon">Выберите иконку проекта</string>
+    <string name="create_project">Создать проект</string>
 </resources>
