@@ -12,4 +12,5 @@
     <string name="create_project_name_hint">Введите название проекта</string>
     <string name="choose_projects_icon">Выберите иконку проекта</string>
     <string name="create_project">Создать проект</string>
+    <string name="catalog">Каталог</string>
 </resources>

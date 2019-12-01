@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import su.arq.ari.R
+import su.arq.ari.activities.main.ui.home.catalog.CatalogAdapter
+import su.arq.ari.activities.main.ui.home.catalog.CatalogItemItemDecoration
+import su.arq.ari.activities.main.ui.home.catalog.CatalogItemModel
 import su.arq.ari.activities.main.ui.home.createproject.CreateProjectFragment
 import su.arq.ari.activities.main.ui.home.projects.ProjectsItemDecoration
 import su.arq.ari.activities.main.ui.home.projects.ProjectIcon
@@ -38,6 +42,17 @@ class MainActivity : AppCompatActivity(), ProjectsAdapter.ItemClickListener{
         projectsRecycler.adapter = pa.apply {
             setOnClickListener(this@MainActivity)
         }
+
+        val catalogRecycler = findViewById<RecyclerView>(R.id.recycler_catalog)
+        catalogRecycler.layoutManager = GridLayoutManager(applicationContext, 2)
+        val catModels = ArrayList<CatalogItemModel>()
+        catModels.add(CatalogItemModel("First", "Price"))
+        catModels.add(CatalogItemModel("Second", "Price"))
+        catModels.add(CatalogItemModel("Third", "Price"))
+        catModels.add(CatalogItemModel("Forth", "Price"))
+        catModels.add(CatalogItemModel("Fifth", "Price"))
+        catalogRecycler.adapter = CatalogAdapter(applicationContext, catModels)
+        catalogRecycler.addItemDecoration(CatalogItemItemDecoration(2, applicationContext))
 
     }
 

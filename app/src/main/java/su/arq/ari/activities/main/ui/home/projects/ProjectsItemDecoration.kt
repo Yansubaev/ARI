@@ -33,6 +33,6 @@ class ProjectsItemDecoration(
             outRect.right = padding
         }
         outRect.top = padding
-        outRect.bottom = padding
+        outRect.bottom = dist
     }
 }

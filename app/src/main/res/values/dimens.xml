@@ -18,4 +18,15 @@
     <dimen name="create_project_project_icon_item_height">56dp</dimen>
     <dimen name="create_project_project_icon_width">44dp</dimen>
     <dimen name="create_project_project_icon_height">44dp</dimen>
+    <dimen name="catalog_item_elevation">10dp</dimen>
+    <dimen name="catalog_item_corner_radius">10dp</dimen>
+    <dimen name="icon_favorite_width">22dp</dimen>
+    <dimen name="icon_favorite_height">22dp</dimen>
+    <dimen name="icon_favorite_margin_start">12dp</dimen>
+    <dimen name="icon_favorite_margin_bottom">12dp</dimen>
+    <dimen name="catalog_item_name_margin_top">6dp</dimen>
+    <dimen name="catalog_item_gradient_height">40dp</dimen>
+    <dimen name="catalog_item_margin_left">5dp</dimen>
+    <dimen name="catalog_item_margin_bottom">16dp</dimen>
+    <dimen name="catalog_item_dist">0dp</dimen>
 </resources>

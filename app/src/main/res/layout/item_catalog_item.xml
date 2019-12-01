@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/catalog_item_img_card"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="11dp"
+        app:cardCornerRadius="@dimen/catalog_item_corner_radius"
+        app:cardElevation="@dimen/catalog_item_elevation">
+
+        <ImageView
+            android:id="@+id/card_catalog_item_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/object_icon"
+            android:scaleType="centerCrop"
+            android:src="@drawable/d6e58e61c32969c1985b5dd4abe0aa4d" />
+
+        <ImageView
+            android:id="@+id/card_catalog_gradient"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/catalog_item_gradient_height"
+            android:layout_gravity="bottom"
+            app:srcCompat="@drawable/catalog_item_gradient_shadow" />
+
+        <ImageView
+            android:id="@+id/card_catalog_item_fav_icon"
+            android:layout_width="@dimen/icon_favorite_width"
+            android:layout_height="@dimen/icon_favorite_height"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/icon_favorite_margin_start"
+            android:layout_marginBottom="@dimen/icon_favorite_margin_bottom"
+            android:contentDescription="@string/favorites_icon"
+            android:src="@drawable/ic_not_favorites" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/catalog_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/catalog_item_name_margin_top"
+        android:text="Rasch Kids &amp; Teens II 291407"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="11dp"
+        android:textAppearance="@style/catalog_item_name" />
+
+    <TextView
+        android:id="@+id/catalog_item_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="1290,40 Р/шт."
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="11dp"
+        android:textAppearance="@style/catalog_item_name" />
+
+</LinearLayout>
