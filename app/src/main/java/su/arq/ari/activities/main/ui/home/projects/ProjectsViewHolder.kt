@@ -8,7 +8,7 @@ import su.arq.ari.R
 
 class ProjectsViewHolder(
     itemView: View,
-    private var clickListener: ProjectsAdapter.ItemClickListener?
+    private var clickListeners: List<((v: View?, position: Int)-> Unit)>
 ) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
     var projectTitle: TextView = itemView.findViewById(R.id.title_project)
@@ -17,8 +17,6 @@ class ProjectsViewHolder(
     init { itemView.setOnClickListener(this) }
 
     override fun onClick(v: View?) {
-        if(clickListener != null){
-            clickListener?.onItemClick(v, adapterPosition )
-        }
+        clickListeners.forEach{ it(v, adapterPosition ) }
     }
 }

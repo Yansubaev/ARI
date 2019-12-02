@@ -11,7 +11,7 @@ class ProjectsAdapter(
     var models: List<ProjectModel>,
     private var context: Context
 ) : RecyclerView.Adapter<ProjectsViewHolder>(){
-    private var itemClickListener: ItemClickListener? = null
+    private var itemClickListeners: MutableList<((v: View?, position: Int)-> Unit)> = mutableListOf()
     private var onBindViewHolder:
             MutableList<((holder: ProjectsViewHolder, position: Int) -> Unit)> = mutableListOf()
     private var creatingModel = CreatingProjectModel()
@@ -25,8 +25,8 @@ class ProjectsAdapter(
         }
     }
 
-    fun setOnClickListener(itemClickListener: ItemClickListener) {
-        this.itemClickListener = itemClickListener
+    fun addOnClickListener(m: (v: View?, position: Int)-> Unit) {
+        itemClickListeners.add(m)
     }
 
     fun addOnBindViewHolderListener(m: (holder: ProjectsViewHolder, position: Int) -> Unit){
@@ -48,7 +48,7 @@ class ProjectsAdapter(
                 parent,
                 false
             ),
-            itemClickListener
+            itemClickListeners
         )
     }
 
@@ -61,9 +61,4 @@ class ProjectsAdapter(
         }
         onBindViewHolder.forEach { it(holder, position) }
     }
-
-    interface ItemClickListener {
-        fun onItemClick(view: View?, position: Int)
-    }
-
 }

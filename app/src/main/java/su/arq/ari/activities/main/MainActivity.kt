@@ -17,7 +17,9 @@ import su.arq.ari.activities.main.ui.home.projects.ProjectIcon
 import su.arq.ari.activities.main.ui.home.projects.ProjectModel
 import su.arq.ari.activities.main.ui.home.projects.ProjectsAdapter
 
-class MainActivity : AppCompatActivity(), ProjectsAdapter.ItemClickListener{
+class MainActivity :
+    AppCompatActivity()
+{
     private var TAG: String = javaClass.simpleName
     private lateinit var navController: NavController
     private lateinit var projectsRecycler: RecyclerView
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity(), ProjectsAdapter.ItemClickListener{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        //region Projects recycler
         val layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
         projectsRecycler = findViewById(R.id.recycler_projects)
         projectsRecycler.addItemDecoration(ProjectsItemDecoration(applicationContext))
@@ -38,29 +41,35 @@ class MainActivity : AppCompatActivity(), ProjectsAdapter.ItemClickListener{
         project.add(ProjectModel("Third", ProjectIcon.HALL))
         pa = ProjectsAdapter(project, applicationContext)
         pa.addElement(ProjectModel("Forth", ProjectIcon.TOILET))
-
-        projectsRecycler.adapter = pa.apply {
-            setOnClickListener(this@MainActivity)
-        }
-
+        projectsRecycler.adapter = pa.apply { addOnClickListener { v, position ->
+            onProjectItemClick(v, position)
+        } }
+        //endregion
+        //region Catalog recycler
         val catalogRecycler = findViewById<RecyclerView>(R.id.recycler_catalog)
-        catalogRecycler.layoutManager = GridLayoutManager(applicationContext, 2)
+        catalogRecycler.layoutManager = GridLayoutManager(this, 2)
         val catModels = ArrayList<CatalogItemModel>()
         catModels.add(CatalogItemModel("First", "Price"))
         catModels.add(CatalogItemModel("Second", "Price"))
         catModels.add(CatalogItemModel("Third", "Price"))
         catModels.add(CatalogItemModel("Forth", "Price"))
         catModels.add(CatalogItemModel("Fifth", "Price"))
-        catalogRecycler.adapter = CatalogAdapter(applicationContext, catModels)
+        catalogRecycler.adapter = CatalogAdapter(this, catModels).apply {
+            addOnFavoriteIconClickListener { v, position ->  onFavoriteIconClick(v, position) }
+        }
         catalogRecycler.addItemDecoration(CatalogItemItemDecoration(2, applicationContext))
+        //endregion
 
     }
 
-    override fun onItemClick(view: View?, position: Int) {
+    private fun onProjectItemClick(view: View?, position: Int) {
         if(pa.models[position].isCreatingModel){
             val cpf = CreateProjectFragment()
             cpf.show(supportFragmentManager, null)
         }
+    }
+    private fun onFavoriteIconClick(view: View?, position: Int){
+
     }
 
 }
