@@ -1,58 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/home_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:background="@color/colorWhite"
     tools:context=".activities.main.MainActivity">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:fitsSystemWindows="true"
+        android:background="@color/colorWhite"
+        android:theme="@style/ARI.AppBarOverlay">
 
-        <include layout="@layout/fragment_projects"/>
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsed_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:collapsedTitleTextAppearance="@style/collapsed_title_catalog"
+            app:expandedTitleMargin="22dp"
+            app:expandedTitleMarginBottom="14dp"
+            app:expandedTitleTextAppearance="@style/collapsed_title_catalog"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-        <include layout="@layout/fragment_catalog" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:minHeight="72dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ARI.PopupOverlay"
+                app:title="Каталог"
+                app:titleMargin="0dp"
+                app:titleMarginBottom="34dp"
+                app:titleMarginStart="6dp" />
 
-    </LinearLayout>
+            <include layout="@layout/fragment_projects" />
 
-    <ImageButton
-        android:id="@+id/home_button_filter"
-        android:layout_width="@dimen/general_button_width"
-        android:layout_height="@dimen/general_button_height"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="46dp"
-        android:background="@drawable/rounded_rectangle"
-        android:src="@drawable/ic_filter_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <ImageButton
-        android:id="@+id/home_button_favorites"
-        android:layout_width="@dimen/general_button_width"
-        android:layout_height="@dimen/general_button_height"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="46dp"
-        android:background="@drawable/rounded_rectangle"
-        android:src="@drawable/ic_not_favorites"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/home_button_basket" />
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/projects_refresh_lay"
+        style="@style/ARI"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <ImageButton
-        android:id="@+id/home_button_basket"
-        android:layout_width="@dimen/general_button_width"
-        android:layout_height="@dimen/general_button_height"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="46dp"
-        android:background="@drawable/rounded_rectangle"
-        android:src="@drawable/ic_basket_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_catalog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

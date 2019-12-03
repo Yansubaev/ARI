@@ -1,5 +1,6 @@
 package su.arq.ari.activities.main
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,10 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.CollapsingToolbarLayout
+import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.test_coordinator_activity_home.*
 import su.arq.ari.R
 import su.arq.ari.activities.main.ui.home.catalog.CatalogAdapter
 import su.arq.ari.activities.main.ui.home.catalog.CatalogItemItemDecoration
@@ -16,6 +21,7 @@ import su.arq.ari.activities.main.ui.home.projects.ProjectsItemDecoration
 import su.arq.ari.activities.main.ui.home.projects.ProjectIcon
 import su.arq.ari.activities.main.ui.home.projects.ProjectModel
 import su.arq.ari.activities.main.ui.home.projects.ProjectsAdapter
+import kotlin.math.abs
 
 class MainActivity :
     AppCompatActivity()
@@ -45,6 +51,7 @@ class MainActivity :
             onProjectItemClick(v, position)
         } }
         //endregion
+
         //region Catalog recycler
         val catalogRecycler = findViewById<RecyclerView>(R.id.recycler_catalog)
         catalogRecycler.layoutManager = GridLayoutManager(this, 2)
@@ -60,6 +67,21 @@ class MainActivity :
         catalogRecycler.addItemDecoration(CatalogItemItemDecoration(2, applicationContext))
         //endregion
 
+        val collapsingToolbar = findViewById<CollapsingToolbarLayout>(R.id.collapsed_toolbar_layout)
+
+        collapsingToolbar.apply {
+            val tf = Typeface.createFromAsset(applicationContext.assets, "fonts/ttnorms_bold.ttf")
+            setCollapsedTitleTypeface(tf)
+            setExpandedTitleTypeface(tf)
+        }
+
+        app_bar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, p1 ->
+            if (abs(p1) - app_bar.totalScrollRange == 0) {
+                projectsRecycler.visibility = View.INVISIBLE
+            } else {
+                projectsRecycler.visibility = View.VISIBLE
+            }
+        })
     }
 
     private fun onProjectItemClick(view: View?, position: Int) {

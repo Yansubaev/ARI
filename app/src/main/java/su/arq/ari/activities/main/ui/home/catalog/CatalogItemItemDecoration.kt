@@ -34,6 +34,7 @@ class CatalogItemItemDecoration(
             outRect.left = dist/2
             outRect.right = margin
         }
-        outRect.top = marginTop
+        outRect.top = marginTop/2
+        outRect.bottom = marginTop/2
     }
 }
