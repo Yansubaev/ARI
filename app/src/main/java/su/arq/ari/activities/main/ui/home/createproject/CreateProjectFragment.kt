@@ -30,9 +30,8 @@ class CreateProjectFragment: BottomSheetDialogFragment() {
         iconsRecycler = rootView.findViewById(R.id.create_project_icons_recycler)
         iconsRecycler.layoutManager = layoutManager
         iconsRecycler.addItemDecoration(IconsItemDecoration(context!!))
-        val ia = IconsAdapter(context!!).apply {
-            setOnItemClickListener { v, vh, p -> onIconSelected(v, vh, p) }
-        }
+        val ia = IconsAdapter(context!!)
+        ia.setOnItemClickListener { v, vh, p -> onIconSelected(v, vh, p) }
         iconsRecycler.adapter = ia
 
         iconsViewModel.getIconsModels().observe(this, Observer {

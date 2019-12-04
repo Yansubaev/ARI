@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +15,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import su.arq.ari.R
 import su.arq.ari.activities.main.ui.home.catalog.CatalogAdapter
 import su.arq.ari.activities.main.ui.home.catalog.CatalogItemItemDecoration
-import su.arq.ari.activities.main.ui.home.catalog.CatalogItemModel
+import su.arq.ari.activities.main.ui.home.catalog.CatalogViewModel
 import su.arq.ari.activities.main.ui.home.createproject.CreateProjectFragment
 import su.arq.ari.activities.main.ui.home.projects.ProjectsItemDecoration
 import su.arq.ari.activities.main.ui.home.projects.ProjectIcon
@@ -27,7 +28,7 @@ class MainActivity :
 {
     private var TAG: String = javaClass.simpleName
     private lateinit var projectsRecycler: RecyclerView
-
+    private val catalogViewModel by lazy { ViewModelProviders.of(this).get(CatalogViewModel::class.java) }
     private lateinit var pa: ProjectsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,20 +81,14 @@ class MainActivity :
     }
     private fun setCatalogRecycler(catalogRecycler: RecyclerView){
         catalogRecycler.layoutManager = GridLayoutManager(this, 2)
-        val catModels = ArrayList<CatalogItemModel>()
-        catModels.add(CatalogItemModel("First", "Price"))
-        catModels.add(CatalogItemModel("Second", "Price"))
-        catModels.add(CatalogItemModel("Third", "Price"))
-        catModels.add(CatalogItemModel("Fourth", "Price"))
-        catModels.add(CatalogItemModel("Fifth", "Price"))
-        catModels.add(CatalogItemModel("Sixth", "Price"))
-        catModels.add(CatalogItemModel("Seventh", "Price"))
-        catModels.add(CatalogItemModel("Eighth", "Price"))
-        catModels.add(CatalogItemModel("Ninth", "Price"))
-        catModels.add(CatalogItemModel("Tenth", "Price"))
-        catalogRecycler.adapter = CatalogAdapter(this, catModels).apply {
-            addOnFavoriteIconClickListener { v, position ->  onFavoriteIconClick(v, position) }
-        }
+        val ca = CatalogAdapter(this)
+        ca.addOnFavoriteIconClickListener { v, position ->  onFavoriteIconClick(v, position) }
+        catalogViewModel.getCatalogItemsModels().observe(this, Observer {
+            it.let {
+                ca.refreshModels(it)
+            }
+        })
+        catalogRecycler.adapter = ca
         catalogRecycler.addItemDecoration(CatalogItemItemDecoration(2, applicationContext))
     }
 
@@ -104,6 +99,9 @@ class MainActivity :
         }
     }
     private fun onFavoriteIconClick(view: View?, position: Int){
+        val models = catalogViewModel.getCatalogItemsModels().value
+        models?.get(position)?.isFavorite = true
+        catalogViewModel.updateModels(models ?: mutableListOf())
     }
 
 }

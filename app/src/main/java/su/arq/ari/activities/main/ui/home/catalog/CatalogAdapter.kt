@@ -15,12 +15,12 @@ class CatalogAdapter(
     var context: Context,
     var models: MutableList<CatalogItemModel> = mutableListOf()
 ) : RecyclerView.Adapter<CatalogItemViewHolder>() {
+    private val TAG = javaClass.simpleName
+
     private var itemClickListeners: MutableList<((v: View?, position: Int)-> Unit)> = mutableListOf()
     private var favoriteClickListeners: MutableList<((v: View?, position: Int)-> Unit)> = mutableListOf()
     private var onBindViewHolderListeners:
             MutableList<((holder: CatalogItemViewHolder, position: Int) -> Unit)> = mutableListOf()
-
-    private val TAG = javaClass.simpleName
 
     fun addOnBindViewHolderListener(m: (holder: CatalogItemViewHolder, position: Int) -> Unit){
         onBindViewHolderListeners.add(m)
@@ -30,6 +30,10 @@ class CatalogAdapter(
     }
     fun addOnFavoriteIconClickListener(m: (v: View?, position: Int)-> Unit){
         favoriteClickListeners.add(m)
+    }
+    fun refreshModels(models: MutableList<CatalogItemModel>){
+        this.models = models
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogItemViewHolder {
@@ -50,6 +54,11 @@ class CatalogAdapter(
         models[position].let {
             holder.itemName.text = it.itemName
             holder.itemPrice.text = it.itemPrice
+            if(it.isFavorite){
+                holder.itemFavIcon.setImageResource(R.drawable.ic_favorites)
+            }else{
+                holder.itemFavIcon.setImageResource(R.drawable.ic_not_favorites)
+            }
         }
         //lp.height =
         val dm = DisplayMetrics()

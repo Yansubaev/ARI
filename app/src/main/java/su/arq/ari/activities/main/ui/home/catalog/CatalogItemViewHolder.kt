@@ -27,10 +27,8 @@ class CatalogItemViewHolder(
     override fun onClick(v: View?) {
         if(v?.id == R.id.card_catalog_item_fav_icon){
             favoriteClickListeners.forEach{ it(v, adapterPosition) }
-            itemFavIcon.setImageResource(FavoriteIcon.CHECKED.id)
         }else{
             clickListeners.forEach{ it(v, adapterPosition) }
-            Log.d(javaClass.simpleName, cardView.width.toString())
         }
     }
 }
